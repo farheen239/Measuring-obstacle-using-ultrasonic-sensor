@@ -1,0 +1,30 @@
+#include<LiquidCrystal.h>
+LiquidCrystal lcd(2,3,4,5,6,7);
+int trigPin= 8;
+int echoPin=9;
+
+void setup()
+{
+  lcd.clear();
+  lcd.begin(16,2);
+  pinMode(8,OUTPUT);  
+   pinMode(9,INPUT);
+}
+
+void loop()
+{
+  digitalWrite(8,LOW);
+  delayMicroseconds(2);
+  digitalWrite(8,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(8,LOW);
+  
+  long time =pulseIn(9,HIGH);
+  int cm= time*0.017;
+  
+  lcd.setCursor(0,0);
+  lcd.print("D= ");
+  lcd.print(cm);
+  lcd.print("cm");
+  
+  delay(500);}
